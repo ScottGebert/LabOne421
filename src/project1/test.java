@@ -22,7 +22,7 @@ public class test {
 	}
 
   private static void printTime(String messgae) {
-    System.out.println(messgae + ((endTime - startTime)) + "ns");
+    System.out.println(messgae + ((endTime - startTime)/1000000) + "ms");
   }
 
 }
