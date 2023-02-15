@@ -24,8 +24,12 @@ public class APIFinance {
 			
 			String line;
 			while ((line = bufferedReader.readLine()) != null) {
+				System.out.println(line);
 				if (line.contains("price")) {
 					price = new BigDecimal(line.split("\"")[3].trim());
+				}
+				else if (line.contains("Note")) {
+					price = new BigDecimal(-1);
 				}
 			}
 		} 
