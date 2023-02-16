@@ -6,25 +6,39 @@ public class test {
 
 	public static void main(String[] args) {
 		PickShareFunctional.init(Shares.symbols);
+      int iterations = 3;
+      ShareInfo p = null;
 		
 	    // Part B
+      long totalTime = 0;
+      for (int i = 0; i<iterations; i++) {
 	    startTime = System.nanoTime();
-	    System.out.println("Starting");
-	    ShareInfo pricesStream = PickShareFunctional.findHighPrices(Shares.symbols.stream());
-	    endTime = System.nanoTime();
-	    printTime("findHighPrices time using stream: ");
-	    System.out.println(pricesStream);
+        p = PickShareFunctional.findHighPrices(Shares.symbols.stream());
+        endTime = System.nanoTime();
+        totalTime += getTime();
+      }
+      System.out.println("Streamy High Priced Share: "+ p.toString());
+	    printTime("findHighPrices time using stream: ", totalTime/iterations);
 	
 	    // Part C
-	    startTime = System.nanoTime();
-	    ShareInfo pricesParallelStream = PickShareFunctional.findHighPrices(Shares.symbols.stream());
-	    endTime = System.nanoTime();
-	    printTime("findHighPrices time using parallel stream: ");
-	    System.out.println(pricesParallelStream);
+      totalTime = 0;
+      for (int i = 0; i<iterations; i++) {
+        startTime = System.nanoTime();
+        p = PickShareFunctional.findHighPrices(Shares.symbols.stream());
+        endTime = System.nanoTime();
+        totalTime += getTime();
+      }
+      System.out.println("Parallel Stream High Priced Share: "+ p.toString());
+	    printTime("findHighPrices time using parallel stream: ", totalTime/iterations);
+
 	}
 
-  private static void printTime(String messgae) {
-    System.out.println(messgae + ((endTime - startTime)/1000000) + "ms");
+  private static void printTime(String messgae, long time) {
+    System.out.println(messgae + (time) + "ns");
+  }
+
+  private static long getTime() {
+    return endTime - startTime;
   }
 
 }
