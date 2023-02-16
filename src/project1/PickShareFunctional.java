@@ -58,4 +58,8 @@ public class PickShareFunctional {
 				.orElse(new ShareInfo("Error", new BigDecimal(0))); // Error if the optional value is empty
 		
 	}
+	
+	public static final Map<String, ShareInfo> getSharePrices() {
+		return sharePrices;
+	}
 }
