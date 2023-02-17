@@ -49,7 +49,7 @@ public class PickShareFunctional {
 	 */
 	public static ShareInfo findHighPrices(Stream<String> symbols) {
 		if (sharePrices == null) {
-			init(symbols.toList());
+			init(symbols.collect(Collectors.toList()));
 		}
 		
 		return symbols.map(sym -> sharePrices.get(sym)) // gets the price for all symbols
